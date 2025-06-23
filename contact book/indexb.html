@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="fetchContacts()">
+
+    <div id ="table">contacts loading...</div>
+    <button id="refresh" type="button">Refresh</button>
+    <button id="addcontact" type="button">Add Contact</button>
+    <button id="delete" type="button">Delete</button>
+
+    <script src="config.js"></script>
+    <script>
+        document.getElementById("addcontact").addEventListener("click", addcontact);
+        document.getElementById("refresh").addEventListener("click", fetchContacts);
+    function fetchContacts() {
+        fetch(rootPath + "controller/get-contacts/")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                displayoutput(data);
+                console.log(data);
+            });
+        }
+
+        function displayoutput(data) {
+             let output = "<table border='1'><tr><th>Avatar</th><th>First Name</th><th>Last Name</th></tr>";
+            output = "<table>";
+            for(let a in data) {
+                output += `
+                <tr onclick="editcontact(${data[a].id})">
+                    <td><img src="${rootPath}controller/uploads/${data[a].avator}" width="50"/></td>
+                    <td><h5>${data[a].firstname}</h5></td>
+                    <td><h5>${data[a].lastname}</h5></td>
+
+                </tr>`;
+            }
+            output += "</table>";
+            document.getElementById("table").innerHTML = output;
+        }
+
+        fetchContacts()
+        document.getElementById("refresh").onclick = fetchContacts;
+    function addcontact() {
+        window.open("add-contact.html", "_self");
+    }
+    function editcontact(id) {
+        window.open("edit-contact.html?id=" + id, "_self");
+    }
+    </script>
+
+</body>
+</html>

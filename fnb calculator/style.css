@@ -1,0 +1,39 @@
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  color: #ffffff;
+  text-align: center;
+  font: normal 3em Arial, Helvetica, sans-serif;
+}
+
+td {
+  width: 25vw;
+  border: 1px solid #4e494d;
+}
+
+tr {
+  height: 16.02vh;
+  background-color: #4e494d;
+}
+
+#inputBox {
+  width: 100%;
+  height: 80px;
+  font-size: 2em;
+  text-align: right;
+  background-color: #4e494d;
+  color: #ffffff;
+  border: 0px;
+}
+
+.digitbutton {
+  background-color: #656165;
+}
+
+.operatorButton {
+  background-color: #fc04c2;
+}
+
+.fefeButton {
+  background-color: #634754;  
+}
